@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- Loading Screen GIF -->
+	<div class="container" id="loading">
+		<div class="jumbotron">
+			<img alt="loading screen" src="{{url_for('static', filename='loading.gif')}}">
+		</div>
+    </div>
+
+    <!-- Gender analysis -->
+    <div class="container" id="one" style="display: none">
+        <div class="jumbotron">
+            <h3 class="questions">Males and Females</h3>
+            <p class="lead">The survival rate was 74% for females but only 19% for males.  
+                  <button class="btn btn-sm btn-primary continue" id="nextOne" type="button">Continue &raquo;</button>
+            </p>
+            <div class="chart-container">
+                <canvas id="gender"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pclass analysis -->
+    <div class="container" id="two" style="display: none">
+        <div class="jumbotron">
+            <h3 class="questions">Passenger Class</h3>
+            <p class="lead">Passengers in first class were 2.5 times more likely to survive. 
+                <button class="btn btn-sm btn-primary continue" id="nextTwo" type="button">Continue &raquo;</button>
+            </p>
+            <div class="chart-container">
+                <canvas id="pclass"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Age analysis -->
+    <div class="container" id="three" style="display: none">
+        <div class="jumbotron">
+            <h3 class="questions">Age Ranges</h3>
+            <p class="lead">The 21 - 40 age range offered the worst odds.
+                    <button class="btn btn-sm btn-primary continue" id="nextThree" type="button">Continue &raquo;</button>
+            </p>
+            <div class="chart-container">
+                <canvas id="age"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Family analysis -->
+    <div class="container" id="four" style="display: none">
+        <div class="jumbotron">
+            <h3 class="questions">Family Members</h3>
+            <p class="lead">Families of 4 had a 72% survival rate, much higher than all other party sizes.
+                    <button class="btn btn-sm btn-primary continue" id="nextFour" type="button">Continue &raquo;</button>
+            </p>
+            <div class="chart-container">
+                <canvas id="family"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Title analysis -->
+    <div class="container" id="five" style="display: none">
+        <div class="jumbotron">
+            <h3 class="questions">Title</h3>
+            <p class="lead">A title of Mr. or Rev. offers the lowest probability of survival. 
+                    <button class="btn btn-sm btn-primary continue" id="nextFive" type="button">Continue &raquo;</button>
+            </p>
+            <div class="chart-container">
+                <canvas id="title"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary and Next Steps -->
+    <div class="container" id="six" style="display: none">
+        <div class="jumbotron">
+            <h3 class="questions">Summary</h3>
+            <p class="lead">Thanks for checking out this app {{ name }}, I hope you enjoyed it and it increased your interest in machine learning.</p>
+            <p class="lead">Further analysis of this dataset can be found on my <a id="aFinal" href="https://github.com/LRS4/Python-Projects/blob/master/Titanic%20Prediction%20Project/Titanic%20EDA.ipynb" target="_blank">GitHub</a>, alternatively retry using different details to see how the prediction changes.</p>
+            <button class="btn btn-lg btn-primary" id="finalSubmit" type="button">Try again &raquo;</button>
+        </div>
+    </div>
+
+{% endblock %}
