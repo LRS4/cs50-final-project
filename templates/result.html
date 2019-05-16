@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- Loading Screen GIF -->
+	<div class="container" id="loading">
+		<div class="jumbotron">
+			<img alt="loading screen" src="{{url_for('static', filename='loading.gif')}}">
+		</div>
+    </div>
+
+    <!-- Results -->
+    <div class="container" id="one" style="display: none">
+        <div class="jumbotron">
+            <h3 class="questions">You {{ message }} <i class="fa fa-ship"></i></h3>
+            <p class="lead">Based upon your input you {{ message }}. Your probability of survival was predicted to be {{ survival_proba | round(2) }}%</p>
+            <div class="progressBarModal">
+                <div class="progress">
+                  <div class="progress-bar progress-bar massive-font" role="progressbar" aria-valuenow="{{ survival_proba | round(2)}}" aria-valuemin="0" aria-valuemax="100" style="width:{{ survival_proba | round(2) }}%">
+                    {{ survival_proba | round(2) }}%
+                  </div>
+                </div>
+                <button class="btn btn-lg btn-primary" id="nextExplain" type="button">Explain my result &raquo;</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
