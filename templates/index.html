@@ -1,0 +1,176 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+	<!-- Loading Screen GIF -->
+	<div class="container" id="loading">
+		<div class="jumbotron">
+			<img alt="loading screen" src="{{url_for('static', filename='loading.gif')}}">
+		</div>
+    </div>
+
+	<!-- Start of main form -->
+	<form action="/" method="POST">
+
+		<!-- Introduction -->
+		<div class="container" id="one" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">Introduction</h3>
+				<p class="lead">The sinking of the RMS Titanic is one of the most infamous shipwrecks in history.  On April 15, 1912, during her maiden voyage, the Titanic sank after colliding with an iceberg, killing 1502 out of 2224 passengers and crew. This sensational tragedy shocked the international community and led to better safety regulations for ships.</p>
+				<p class="lead">This app uses machine learning to assess your chances of surviving the famous ship-wreck by forming algorithmic decisions based upon your input and the training dataset from Kaggle.</p>
+				<button class="btn btn-lg btn-primary nextBtns" id="nextOne" type="button">Start &raquo;</button>
+			</div>
+		</div>
+
+		<!-- Full Name = name + title -->
+		<div class="container" id="two" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">What is your full name?</h3>
+				<div class="form-group input-group-lg">
+					<input type="text" autofocus class="form-control" id="fullName" name="fullName" placeholder="John Smith" autocomplete="new-password" required>
+					<small class="warning" style="display:none">
+						<i class="fa fa-warning"></i> Please enter your name.
+					</small>
+				</div>
+				<button class="btn btn-lg btn-primary backBtns" type="button">Back</button>
+				<button class="btn btn-lg btn-primary nextBtns" id="nextTwo" type="button">Next &raquo;</button>
+			</div>
+		</div>
+
+		<!-- Title -->
+		<div class="container" id="three" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">What is your title?</h3>
+				<div class="form-group input-group-lg">
+					<select name="title" class="custom-select">
+						<option value="" disabled selected>Open this select menu</option>
+						<option value="0">Mr.</option>
+						<option value="1">Mrs.</option>
+						<option value="2">Master.</option>
+						<option value="3">Dr.</option>
+						<option value="4">Rev.</option>
+						<option value="5">Mlle.</option>
+						<option value="6">Col.</option>
+						<option value="7">Major.</option>
+						<option value="8">the.</option>
+						<option value="9">Don.</option>
+						<option value="10">Capt.</option>
+						<option value="11">Mme.</option>
+						<option value="12">Lady.</option>
+						<option value="14">Sir.</option>
+						<option value="15">Ms.</option>
+						<option value="16">Miss.</option>
+					</select>
+					<small class="warning" id="titleWarning" style="display:none">
+						<i class="fa fa-warning"></i> Please select an option from the dropdown.
+					</small>
+				</div>
+				<button class="btn btn-lg btn-primary backBtns" type="button">Back</button>
+				<button class="btn btn-lg btn-primary nextBtns" type="button" id="nextThree">Next &raquo;</button>
+			</div>
+		</div>
+
+		<!-- Age -->
+		<div class="container" id="four" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">What is your age?</h3>
+				<div class="form-group input-group-lg">
+					<input type="text" id="inputAge" name="age" class="form-control" autocomplete="off" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+					<small class="warning" style="display:none">
+						<i class="fa fa-warning"></i> Please enter your age.
+					</small>
+					<small class="warning" style="display:none">
+						<i class="fa fa-warning"></i> Please enter a value between 1 and 100.
+					</small>
+				</div>
+				<button class="btn btn-lg btn-primary backBtns" type="button">Back</button>
+				<button class="btn btn-lg btn-primary nextBtns" type="button" id="nextFour">Next &raquo;</button>
+			</div>
+		</div>
+
+		<!-- Gender -->
+		<div class="container" id="five" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">What is your sex?</h3>
+				<div class="form-group input-group-lg">
+					<div class="custom-control custom-radio">
+						<input type="radio" class="custom-control-input input-lg" id="maleRadio" name="gender" value="1">
+						<label class="custom-control-label" for="maleRadio">Male</label>
+					</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" class="custom-control-input input-lg" id="femaleRadio" name="gender" value="0">
+						<label class="custom-control-label" for="femaleRadio">Female</label>
+					</div>
+					<small class="warning" id="genderWarning" style="display:none">
+						<i class="fa fa-warning"></i> Please select from the options above.
+					</small>
+				</div>
+				<button class="btn btn-lg btn-primary backBtns" type="button">Back</button>
+				<button class="btn btn-lg btn-primary nextBtns" type="button" id="nextFive">Next &raquo;</button>
+			</div>
+		</div>
+
+		<!-- Passenger class -->
+		<div class="container" id="six" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">In which class would you travel?</h3>
+				<p class="lead">Most people were in standard class, with first and second class tickets costing significantly more.</p>
+				<div class="form-group input-group-lg">
+					<div class="custom-control custom-radio">
+						<input type="radio" class="custom-control-input input-lg" id="firstClass" name="class" value="1">
+						<label class="custom-control-label" for="firstClass">First Class</label>
+
+					</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" class="custom-control-input input-lg" id="secondClass" name="class" value="2">
+						<label class="custom-control-label" for="secondClass">Second Class</label>
+					</div>
+					<div class="custom-control custom-radio">
+						<input type="radio" class="custom-control-input input-lg" id="thirdClass" name="class" value="3">
+						<label class="custom-control-label" for="thirdClass">Standard Class</label>
+					</div>
+					<small class="warning" id="classWarning" style="display:none">
+						<i class="fa fa-warning"></i> Please select from the options above.
+					</small>
+				</div>
+				<button class="btn btn-lg btn-primary backBtns" type="button">Back</button>
+				<button class="btn btn-lg btn-primary nextBtns" type="button" id="nextSix">Next &raquo;</button>
+			</div>
+		</div>
+
+		<!-- Family - SibSp ParCh -->
+		<div class="container" id="seven" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">How many others would you travel with?</h3>
+				<p class="lead">This includes a spouse, siblings, parents and/or children. <b>Skip this section if you would travel alone</b></p>
+				<div class="form-group input-group-lg">
+					<div class="form-group input-group-lg">
+						<input type="number" id="inputFamily" name="family" value="0" class="form-control" autocomplete="off" min="0" max="8" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+					</div>
+					<small class="warning" id="familyWarning" style="display:none">
+						<i class="fa fa-warning"></i> Please enter a value.
+					</small>
+				</div>
+				<button class="btn btn-lg btn-primary backBtns" type="button">Back</button>
+				<button class="btn btn-lg btn-primary nextBtns" type="button" id="nextSeven">Next &raquo;</button>
+			</div>
+		</div>
+
+		<!-- Confirmation -->
+		<div class="container" id="eight" style="display: none">
+			<div class="jumbotron">
+				<h3 class="questions">Confirmation</h3>
+				<p id="confirmName" class="lead">Your full name is </p>
+				<p id="confirmAge" class="lead">Your age is </p>
+				<p id="confirmSex" class="lead">Your sex is </p>
+				<p id="confirmClass" class="lead">You would travel in </p>
+				<p id="confirmFare" class="lead">You would pay x for a ticket</p>
+				<p id="confirmFamily" class="lead">You would travel with </p>
+				<button class="btn btn-lg btn-primary backBtns" type="button">Back</button>
+				<button class="btn btn-lg btn-primary nextBtns" type="submit" id="submit">Submit</button>
+			</div>
+		</div>
+
+	</form>
+
+{% endblock %}
