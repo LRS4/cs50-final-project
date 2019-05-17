@@ -10,9 +10,9 @@ The project was to create a machine learning web application which predicts the 
 * Returns the result to the user
 * Renders a template to explain the analysis behind the model to the user
 
-A demo video (2 minutes) can be found [here](https://www.youtube.com/).
+A demo video (2 minutes) can be found at: [https://www.youtube.com/watch?v=UONtK24WVwE](https://www.youtube.com/watch?v=UONtK24WVwE).
 
-The application can be accessed at: [https://www.titanic-predictor.herokuapp.com](https://www.titanic-predictor.herokuapp.com).
+The application can be accessed at: [http://ml-titanic-app.herokuapp.com/](http://ml-titanic-app.herokuapp.com/).
 
 ## Tools used
 
