@@ -174,14 +174,22 @@ $(document).ready(function(){
 	});
 
 	// on final submit display loading again while server prepares data and executes model
+	// retrieve first name
 	$("#submit").click(function() {
 		$("#eight").css("display", "none");
 		$("#loading").css("display", "block");
+		var name = $("#fullName").val();
+		var first = name.replace(/ .*/,'');
+		sessionStorage.setItem("firstname", first)
 	});
 
 	// redirect to analysis page from results page
 	$("#nextExplain").click(function() {
 		document.location.href = "/analysis";
+	});
+
+	$(".firstName").click(function() {
+		$("#sayBye").html("Thanks for checking out this app " + sessionStorage.getItem("firstname") + ", I hope you enjoyed it and it increased your interest in machine learning.")
 	});
 	
 });

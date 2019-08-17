@@ -116,8 +116,7 @@ def index():
 @app.route("/analysis", methods=['GET'])
 def analysis():
     """Show analysis to user"""
-    name = session["name"]
-    return render_template("analysis.html", name=name)
+    return render_template("analysis.html")
 
 if __name__ == '__main__':
     app.run()
